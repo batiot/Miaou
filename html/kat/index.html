@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello, Nginx!</title>
+    <script>
+      var owToken; 
+  
+      async function getAuthToken() {
+        const url = "/api/v1/auths/";
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+          }
+          const json = await response.json();
+          console.log(json.token);
+          owToken = json.token;
+          document.getElementById("console-area").value += (owToken+'\n');
+          return json;
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+      async function getChatList() {
+        const url = "/api/v1/chats/";
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+          }
+          const json = await response.json();
+          console.log(json);
+          document.getElementById("console-area").value += (json.map((chat) => chat.title)+'\n');
+          return json;
+        } catch (error) {
+          console.error(error.message);
+        }
+      }      
+    </script>
+</head>
+<body>
+    <p>This is a test page for kat &#x1F63A;</p>
+    <button id="authButton" onclick="getAuthToken()">authToken</button><br/>
+    
+    <button id="chatListButton" onclick="getChatList()">chatList</button><br/>
+    
+    <a href="http://localhost/">open-webui</a><br/>
+    <a href="http://localhost/docs">open-webui docs</a><br/>
+    <textarea id='console-area'></textarea>
+</body>
+</html>

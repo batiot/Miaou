@@ -45,7 +45,7 @@ services:
       - 'GLOBAL_LOG_LEVEL=DEBUG'
       - 'ENABLE_WEBSOCKET_SUPPORT=true'
       - 'ENABLE_OAUTH_SIGNUP=true'
-      - 'ENABLE_LOGIN_FORM=true'
+      - 'ENABLE_LOGIN_FORM=false'
       - 'DEFAULT_USER_ROLE=user'
     extra_hosts:
       - host.docker.internal:host-gateway
